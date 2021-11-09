@@ -9,6 +9,7 @@ app = Flask(__name__)
 def get_animal(id):
 
 
+
 connection = sqlite3.connect('animal.db')
 cursor = connection.cursor()
 sql = ('''наш sql запрос''')
