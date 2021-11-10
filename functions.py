@@ -1,8 +1,7 @@
 import sqlite3
-from flask import abort
 
 
-def animal_table(itemid):
+def animal_table():
     con = sqlite3.connect("animal.db")
     cur = con.cursor()
     query1 = '''CREATE TABLE colors (
