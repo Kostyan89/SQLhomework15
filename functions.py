@@ -1,6 +1,7 @@
 import sqlite3
 from flask import abort
 
+
 def animal_table(itemid):
     con = sqlite3.connect("animal.db")
     cur = con.cursor()
@@ -60,12 +61,12 @@ def animal_by_id(itemid):
     cur.execute(query13)
     result = cur.fetchone()
     con.close()
-    result = {
+    if not result:
+        None
+    result_item = {
         "age_upon": result[0][1],
         "animal_id": result[0][2],
         "name": result[0][3],
         "breed": result[0][4],
     }
-    if not result:
-        abort, 404
-    return result
+    return result_item
