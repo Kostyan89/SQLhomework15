@@ -1,15 +1,16 @@
-from flask import Flask
-import sqlite3
+from flask import Flask, jsonify
+from functions import animal_by_id
+
 
 app = Flask(__name__)
 
-connection = sqlite3.connect('animal.db')
-cursor = connection.cursor()
-query_1 = "CREATE TABLE colors(id INTEGER PRIMARY KEY AUTOINCREMENT, name(VARCHAR(30))"
-query_2 = 'INSERT INTO colors(name) SELECT color_1 FROM animals'
-cursor.execute(query_1)
-cursor.execute(query_2)
-connection.close()
+
+@app.route('/<int:itemid>')
+def info(itemid):
+    result = animal_by_id(itemid)
+    if not result:
+        return "Животного с таким ID не найдено", 404
+    return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
