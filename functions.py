@@ -7,10 +7,10 @@ def animal_table():
     query1 = '''CREATE TABLE colors (
                 ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name varchar(30) NOT NULL DEFAULT 'Noname')'''
-    query2 = '''INSERT INTO colors (name) SELECT color1 FROM animals'''
+    query2 = '''INSERT INTO colors (name) SELECT DISTINCT color1 FROM animals'''
     query3 = '''CREATE TABLE animal_colors (animal_id INT, color_id INT)'''
     query4 = '''INSERT INTO animal_colors
-                SELECT animals."index", colors.id
+                SELECT animals."index", colors.ID
                 FROM animals JOIN colors on color1 = colors.name'''
     query5 = '''CREATE TABLE outcomes (outcome_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 outcome_subtype VARCHAR(50), outcome_month INT, outcome_year INT)'''
